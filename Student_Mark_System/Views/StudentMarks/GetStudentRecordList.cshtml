@@ -1,0 +1,155 @@
+﻿@model IEnumerable<Student_Mark_System.Models.GetStudentData>
+@{
+    ViewBag.Title = "GetStudentData";
+    int i = 1;
+}
+<style>
+    body {
+        margin: 0;
+        background-color:lavender;
+    }
+        table {
+        width: 100%;
+        table-layout: fixed;
+    }
+    tr {
+        padding: 20px 15px;
+        text-align: left;
+        font-weight: 500;
+        font-size: 12px;
+        background-color:mistyrose;
+        color: darkred;
+        text-transform: uppercase;
+    }
+  th{
+      background-color:steelblue;
+  }
+    td {
+        padding: 15px;
+        text-align: left;
+        font-weight: 300;
+        font-size: 12px;
+        color: darkblue;
+        table-layout: inherit;
+    }
+</style>
+
+
+<div class=" text-right">
+    <button type="button" class="btn btn-success " onclick="Add()">Add</button>
+</div>
+
+<table class="table">
+
+    <tr class="table-bordered" >
+        <th >Sl .No </th>
+        <th>Roll No  </th>
+        <th>Name  </th>
+        <th>Tamil </th>
+        <th>English </th>
+        <th>Maths  </th>
+        <th>Science  </th>
+        <th>Social </th>
+        <th>Total </th>
+        <th>Average </th>
+        <th>Action </th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+
+            <tr class="table-bordered">
+                <td>
+                    @i
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Roll_No)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(m => item.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(m => item.Tamil)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(m => item.English)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(m => item.Maths)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(m => item.Science)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(m => item.Social)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(m => item.Total)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(m => item.Avarge)
+                </td>
+
+                <td>
+                    <button type="button" class="fa fa-edit" style='font-size:20px;color:royalblue' onclick="edit(@(item.Student_Id))"></button>
+                    <button type="button" class='fas fa-trash-alt' style='font-size:20px;color:red' onclick="Delete(@(item.Student_Id))"></button>
+                </td>
+              
+            </tr>
+            i++;
+        }
+    }
+    else
+    {
+        <tr>
+            <td>
+                No student mark list at the moment
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<script>
+   
+    function Add() {
+        window.location.href = "/StudentMarks/Addstudentresult"
+    }
+
+    function edit(studentId) {
+        window.location.href = "/StudentMarks/Addstudentresult?studentId=" + studentId
+    }
+
+    function Delete(studentId) {
+        if (confirm("Are sure you want dlt this item"))
+        {
+            window.location.href = "/StudentMarks/DeleteStudentMarks?studentId=" + studentId
+        }
+       
+        
+    }
+</script>
+
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'>
+
+</script>
+
+
+
+
+
+
+

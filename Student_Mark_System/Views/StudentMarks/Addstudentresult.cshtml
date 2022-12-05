@@ -1,0 +1,241 @@
+﻿@model Student_Mark_System.Models.GetStudentData
+@{
+    ViewBag.Title = "Addstudentresult";
+
+}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: lavender;
+        font-family: Calibri, cursive;
+    }
+
+    #Tamil {
+        border-block: solid;
+        position: sticky;
+    }
+
+    #English {
+        border-block: solid;
+        position: sticky;
+    }
+
+    #Social {
+        border-block: solid;
+        position: sticky;
+    }
+
+    #Maths {
+        border-block: solid;
+        position: sticky;
+    }
+
+    #Science {
+        border-block: solid;
+        position: sticky;
+    }
+
+
+
+    .right {
+        position: center;
+        color: indianred;
+        letter-spacing: 3px;
+        margin-bottom: 5px;
+        font-weight: bold;
+        padding-left: 10px;
+    }
+
+    .center {
+        position: center;
+        padding: 5px 10px;
+        border-radius: 10px;
+    }
+
+    
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+
+
+<body>
+
+    @using (Html.BeginForm("SaveStudentRresult", "StudentMarks", FormMethod.Post, htmlAttributes: new { id = "myForm", autocomplete = "off" }))
+    {
+
+
+
+        <div class="center">
+            <h2 class="center">Mark Entry List</h2>
+            <div class="col-md-6">
+                @Html.HiddenFor(x => x.Student_Id)
+                <div class="right">
+                    @Html.Label("Roll No :")
+                    @Html.TextBoxFor(m => m.Roll_No, htmlAttributes: new { @class = "form-control", id = "Roll_No", maxlength = 5 })
+                </div>
+
+                <div class="right">
+                    @Html.Label("Name :")
+                    @Html.TextBoxFor(m => m.Name, htmlAttributes: new { @class = "form-control", id = "Name", maxlength = 50 } )
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="right">
+                    @Html.Label("Tamil:")
+                    @Html.TextBoxFor(m => m.Tamil, htmlAttributes: new { @class = "form-control", id = "Tamil", type="number", maxlength = 3 })
+                </div>
+
+                <div class="right"> 
+                    @Html.Label("English :")
+                    @Html.TextBoxFor(m => m.English, htmlAttributes: new { @class = "form-control", id = "English", maxlength = 3 })
+                </div>
+
+                <div class="right">
+                    @Html.Label("Maths :")
+                    @Html.TextBoxFor(m => m.Maths, htmlAttributes: new { @class = "form-control", id = "Maths", maxlength = 3 })
+                </div>
+                <div class="right">
+                    @Html.Label("Science :")
+                    @Html.TextBoxFor(m => m.Science, htmlAttributes: new { @class = "form-control", id = "Science", maxlength = 3 })
+
+                </div>
+
+                <div class="right">
+                    @Html.Label(" Social :")
+                    @Html.TextBoxFor(m => m.Social, htmlAttributes: new { @class = "form-control", id = "Social", maxlength = 3 } )
+                </div>
+            </div>            
+            @if (Model != null && Model.Student_Id > 0)
+            {
+                <div class="Update">
+                    <button type="submit" id="SaveAdd" class="btn btn-info">Update</button>
+                </div>
+            }
+            else
+            {
+                <div class="save">
+                    <button type="submit" id="SaveAdd" class="btn btn-info">Save</button>
+                </div>
+            }
+        </div>
+    }
+
+    <div class="text-right">
+        <button type="button" class="btn btn-danger" onclick="back()">back</button>
+    </div>
+
+</body>
+<script>
+    function back() {
+        window.location.href = "/StudentMarks/GetStudentRecordList"
+    }
+
+    $('#myForm').validate({
+        rules: {
+            Tamil: {
+                required: true,
+                minlength: 1,
+                maxlength: 3,
+                regex: "^[1-9]?[0-9]{1}$|^100$"
+            },
+            English: {
+                required: true,
+                minlength: 1,
+                maxlength: 3,
+                regex: "^[1-9]?[0-9]{1}$|^100$"
+            }, Maths: {
+                required: true,
+                minlength: 1,
+                maxlength: 3,
+                regex: "^[1-9]?[0-9]{1}$|^100$"
+            }, Science: {
+                required: true,
+                minlength: 1,
+                maxlength: 3,
+                regex: "^[1-9]?[0-9]{1}$|^100$"
+            }, Social: {
+                required: true,
+                minlength: 1,
+                maxlength: 3,
+                regex: "^[1-9]?[0-9]{1}$|^100$"
+            }, Roll_No: {
+                required: true,
+                minlength: 1,
+                maxlength: 5,
+            },
+            Name: {
+                required: true,
+                minlength: 1,
+                maxlength: 15,
+                regex: (/^[A-Za-z]+$/)
+                 
+            },
+        },
+        messages: {
+            Tamil: {
+                required: "this field is required",
+                minlength: "this field must contain at least {0} characters",
+                maxlength: "this field no more than {0} characters",
+                regex: "Enter valid mark"
+            }, English: {
+                required: "this field is required",
+                minlength: "this field must contain at least {0} characters",
+                maxlength: "this field no more than {0} characters",
+                regex: "Enter valid mark"
+            }, Maths: {
+                required: "this field is required",
+                minlength: "this field must contain at least {0} characters",
+                maxlength: "this field no more than {0} characters",
+                regex: "Enter valid mark"
+            }, Science: {
+                required: "this field is required",
+                minlength: "this field must contain at least {0} characters",
+                maxlength: "this field no more than {0} characters",
+                regex: "Enter valid mark"
+            }, Social: {
+                required: "this field is required",
+                minlength: "this field must contain at least {0} characters",
+                regex: "Enter valid mark"
+            }, Roll_No: {
+                required: "this field is required",
+                minlength: "this field must contain at least {0} characters",
+                maxlength: "this field no more than {0} characters",                
+            },
+            Name: {
+                required: "this field is required",
+                minlength: "this field must contain at least {0} characters",
+                maxlength: "this field no more than {0} characters",
+                regex: "Enter only alphatical leters only"
+            },
+        }
+    });
+
+
+    //$("#SaveAdd").click(function () {
+
+    //    if ($("#myForm").valid())
+    //    $("#myForm").submit();
+        
+    //}
+    //    )
+
+
+
+</script>
+
+
